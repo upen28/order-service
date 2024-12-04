@@ -3,6 +3,8 @@ spring:
       url: r2dbc:postgresql://my-release-postgresql.default.svc.cluster.local:5432/polardb_order
       username: postgres
       password: sxctWoXesH
+   config:
+      import: configtree:/workspace/secrets/*/  
 polar:
    catalog-service-uri: http://catalog-service:80
 
