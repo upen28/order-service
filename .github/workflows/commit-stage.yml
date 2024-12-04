@@ -3,7 +3,7 @@ on: [workflow_dispatch]
 env:
   REGISTRY: ghcr.io
   IMAGE_NAME: upen28/polar-bookshop/order-service
-  VERSION: latest
+  VERSION: ${{ github.sha }}
        
 jobs:
   build:
