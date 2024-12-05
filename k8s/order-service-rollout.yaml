@@ -1,80 +1,71 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Rollout
 metadata:
-  name: order-service-rollout
-  labels:
-    app: order-service-rollout
+   name: order-service-rollout
+   labels:
+      app: order-service-rollout
 spec:
-  replicas: 1
-  strategy:
-    canary:
-      maxSurge: "25%"
-      maxUnavailable: 0
-      steps:
-      - setWeight: 10
-      - pause: {}
-  selector:
-    matchLabels:
-      app: order-service
-  template:
-    metadata:
-      labels:
-        app: order-service
-      annotations:
-        prometheus.io/scrape: "true"
-        prometheus.io/path: /actuator/prometheus
-        prometheus.io/port: "9002"
-    spec:     
-      containers:
-        - name: order-service-container
-          image: ghcr.io/upen28/polar-bookshop/order-service:latest
-          imagePullPolicy: Always
-          ports:
-            - containerPort: 9002
-          livenessProbe:
-            httpGet:
-              path: /actuator/health/liveness
-              port: 9002
-            initialDelaySeconds: 15
-            periodSeconds: 30
-          readinessProbe:
-            httpGet:
-              path: /actuator/health/readiness
-              port: 9002
-            initialDelaySeconds: 15
-            periodSeconds: 30
-          volumeMounts:
-          - name: postgres-credentials-volume
-            mountPath: /workspace/secrets/postgres
-          - name: order-config-volume
-            mountPath: /workspace/config   
-      volumes:
-      -  name: postgres-credentials-volume
-         secret:
-            secretName: order-postgres-credentials
-      - name: order-config-volume
-        configMap:
-            name: order-config       
----
+   replicas: 1
+   strategy:
+      canary:
+         maxSurge: 25%
+         maxUnavailable: 0
+         steps:
+         -  setWeight: 10
+         -  pause: {}
+   selector:
+      matchLabels:
+         app: order-service
+   template:
+      metadata:
+         labels:
+            app: order-service
+         annotations:
+            prometheus.io/scrape: "true"
+            prometheus.io/path: /actuator/prometheus
+            prometheus.io/port: '9002'
+      spec:
+         containers:
+         -  name: order-service-container
+            image: ghcr.io/upen28/polar-bookshop/order-service:latest
+            imagePullPolicy: Always
+            ports:
+            -  containerPort: 9002
+            livenessProbe:
+               httpGet:
+                  path: /actuator/health/liveness
+                  port: 9002
+               initialDelaySeconds: 15
+               periodSeconds: 30
+            readinessProbe:
+               httpGet:
+                  path: /actuator/health/readiness
+                  port: 9002
+               initialDelaySeconds: 15
+               periodSeconds: 30
+            volumeMounts:
+            -  name: order-secrets-volume
+               mountPath: /workspace/secrets/postgres
+            -  name: order-configmap-volume
+               mountPath: /workspace/config
+         volumes:
+         -  name: order-secrets-volume
+            secret:
+               secretName: order-secrets
+         -  name: order-configmap-volume
+            configMap:
+               name: order-configmap
+---               
 apiVersion: v1
 kind: Service
 metadata:
-  name: order-service
-  labels:
-    app: order-service
+   name: order-service
+   labels:
+      app: order-service
 spec:
-  selector:
-    app: order-service
-  ports:
-    - protocol: TCP
+   selector:
+      app: order-service
+   ports:
+   -  protocol: TCP
       port: 80
       targetPort: 9002
----
-apiVersion: v1
-kind: Secret
-metadata:
-   name: order-postgres-credentials
-type: Opaque
-stringData:
-   spring.datasource.password: sxctWoXesH      
-      

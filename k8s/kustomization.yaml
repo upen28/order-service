@@ -11,9 +11,14 @@ resources:
   - order-service-rollout.yaml 
  
 configMapGenerator:
-  - name: order-config
+  - name: order-configmap
     files:
       - application.yml
     options:
       labels:
-        app: order-service    
+        app: order-service
+        
+secretGenerator:
+-  name: order-secrets
+   literals:
+   - spring.datasource.password=sxctWoXesH            
