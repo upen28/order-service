@@ -5,7 +5,7 @@ spring:
    config:
       import: configtree:/workspace/secrets/*/  
 polar:
-   catalog-service-uri: http://catalog-service:81
+   catalog-service-uri: http://catalog-service:80
 
 
                   
