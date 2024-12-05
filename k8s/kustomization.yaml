@@ -21,4 +21,4 @@ configMapGenerator:
 secretGenerator:
 -  name: order-secrets
    literals:
-   - spring.datasource.password=sxctWoXesH            
+   - spring.r2dbc.password=sxctWoXesH            
