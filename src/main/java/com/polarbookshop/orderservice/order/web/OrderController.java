@@ -29,6 +29,7 @@ public class OrderController {
 
 	@GetMapping
 	public Flux<Order> getAllOrder() {
+		log.info("returning all orders");
 		return orderService.getAllOrders();
 	}
 

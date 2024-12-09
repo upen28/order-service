@@ -25,7 +25,7 @@ public class OrderService {
 	}
 
 	public Mono<Order> submitOrder(OrderRequest orderRequest) {
-		return bookClient.getBookByIsbn(orderRequest.isbn())
+		return bookClient.getBookByIsbn(orderRequest.isbn()).log("response return from catalog service")
 				.map(book -> buildAcceptedOrder(book, orderRequest.quantity()))
 				.defaultIfEmpty(buildRejectedOrder(orderRequest.isbn(), orderRequest.quantity()))
 				.flatMap(orderRepository::save);
