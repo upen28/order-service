@@ -13,7 +13,7 @@ public class BookTest {
 
 	@Test
 	public void testBook() {
-
+     System.out.println("hello");
 	}
 
 	@Test
