@@ -54,7 +54,7 @@ tasks.named('test') {
 	useJUnitPlatform()
 }
 
-acoco {
+jacoco {
     toolVersion = "0.8.12"
 }
 
