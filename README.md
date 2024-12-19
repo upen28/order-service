@@ -1,0 +1,1 @@
+[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=upen28_order-service&metric=alert_status&token=d84ac2fafd97e3f97a95edf74387de3ea4aacc29)](https://sonarcloud.io/summary/new_code?id=upen28_order-service)
