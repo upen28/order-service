@@ -41,4 +41,14 @@ public class BookTest {
 
 	}
 
+	@Test
+	public void testBook7() {
+
+	}
+
+	@Test
+	public void testBook8() {
+
+	}
+
 }
