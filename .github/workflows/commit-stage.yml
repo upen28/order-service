@@ -32,13 +32,13 @@ jobs:
           scanners: "license"
           ignore-unfixed: true
           format: "sarif"
-          output: "trivy-repo-results.sarif"
+          output: "trivy-${{ github.event.repository.name }}-results.sarif"
           severity: "CRITICAL,HIGH"
 
       - name: Upload Trivy Scan Results to GitHub Security tab
         uses: github/codeql-action/upload-sarif@v3
         with:
-          sarif_file: "trivy-repo-results.sarif"
+          sarif_file: "trivy-${{ github.event.repository.name }}-results.sarif"
 
       - name: Build, Unit Tests and Integration Tests
         run: |
