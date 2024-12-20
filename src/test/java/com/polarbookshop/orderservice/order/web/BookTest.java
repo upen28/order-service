@@ -26,4 +26,19 @@ public class BookTest {
 
 	}
 
+	@Test
+	public void testBook4() {
+
+	}
+
+	@Test
+	public void testBook5() {
+
+	}
+
+	@Test
+	public void testBook6() {
+
+	}
+
 }
