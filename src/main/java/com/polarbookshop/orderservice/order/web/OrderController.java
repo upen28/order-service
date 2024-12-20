@@ -8,7 +8,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.polarbookshop.orderservice.book.BookClient;
 import com.polarbookshop.orderservice.order.domain.Order;
 import com.polarbookshop.orderservice.order.domain.OrderService;
 
@@ -23,7 +22,7 @@ public class OrderController {
 	private static final Logger log = LoggerFactory.getLogger(OrderController.class);
 	private OrderService orderService;
 
-	public OrderController(OrderService orderService, BookClient bookClient) {
+	public OrderController(OrderService orderService) {
 		this.orderService = orderService;
 	}
 
