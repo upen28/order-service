@@ -18,7 +18,7 @@ env:
 
 jobs:
   package:
-    name: Package and Publish
+    name: Package, Scan(Trivy) and Publish(Gitops Repository)
     runs-on: ubuntu-latest
     permissions:
       contents: read
