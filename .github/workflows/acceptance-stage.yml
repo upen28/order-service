@@ -53,11 +53,11 @@ jobs:
           docker image ls 
           docker push ${{ env.REGISTRY }}/${{env.USER_NAME}}/${{ env.APP_IMAGE }}:${{ env.APP_VERSION }}
 
-      - name: Run Trivy IMAGE Vulnerability Scanner for Docker Image
+      - name: Run Trivy Image Vulnerability Scanner for Docker Image
         uses: aquasecurity/trivy-action@master
         with:
           image-ref: ${{ env.REGISTRY }}/${{env.USER_NAME}}/${{ env.APP_IMAGE }}:${{ env.APP_VERSION }}
-          format: "table,sarif"
+          format: "sarif"
           output: "trivy-docker-results.sarif"
            
 
