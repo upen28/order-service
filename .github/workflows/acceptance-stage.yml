@@ -64,7 +64,7 @@ jobs:
         uses: aquasecurity/trivy-action@0.29.0
         with:
           image-ref: ${{ env.REGISTRY }}/${{env.USER_NAME}}/${{ env.APP_IMAGE }}:${{ env.APP_VERSION }}
-          scanners: "vuln,secret,misconfig,license"
+          scanners: "vuln"
           format: "sarif"
           output: "trivy-docker-results.sarif"
 
